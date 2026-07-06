@@ -40,7 +40,25 @@
     body { background-color: #FDF9F9; }
     .grad-bordeaux { background: linear-gradient(120deg,#1E100F 0%,#4D0C12 48%,#6b0d18 100%); }
     .grad-strip { background: linear-gradient(120deg,#1E100F 0%,#4D0C12 100%); }
+    .lead-accordion{max-height:0;overflow:hidden;transition:max-height .5s ease;}
+    .lead-accordion.open{max-height:2600px;}
   </style>
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1567955260162409');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1567955260162409&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body class="font-sans text-darkmaroon antialiased">
 
@@ -72,16 +90,19 @@
             Turn every facial appointment into a recurring revenue stream with T-Face.
           </p>
 
-          <ul class="mt-9 space-y-3 text-[14px] text-white/85">
-            <li class="flex items-center gap-3"><span class="text-white">✓</span> Eight professional functions in one guided platform</li>
-            <li class="flex items-center gap-3"><span class="text-white">✓</span> Nine chip-identified ampoules, matched automatically</li>
-            <li class="flex items-center gap-3"><span class="text-white">✓</span> Designed and manufactured in Italy</li>
-          </ul>
+          <div class="mt-9 border-l-2 border-white/25 pl-5">
+            <div class="text-[10px] tracking-[0.28em] font-semibold text-white/55 mb-3">PARTNER OFFER · UNTIL JULY 17, 2026</div>
+            <ul class="space-y-3 text-[14px] text-white/85">
+              <li class="flex items-center gap-3"><span class="text-white">✓</span> <span><strong class="font-semibold text-white">$0</strong> upfront investment</span></li>
+              <li class="flex items-center gap-3"><span class="text-white">✓</span> <span>First <strong class="font-semibold text-white">12 capital rates funded</strong> — your first 12 months</span></li>
+              <li class="flex items-center gap-3"><span class="text-white">✓</span> <span><strong class="font-semibold text-white">AI-Powered Marketing</strong> included</span></li>
+            </ul>
+          </div>
 
           <div class="mt-11 flex flex-wrap items-center gap-5">
-            <a href="#form" class="bg-white text-bordeaux px-7 py-3.5 text-[12px] font-bold tracking-wide hover:bg-white/90 transition">
-              SEE HOW THIS WORKS FOR YOUR CLINIC
-            </a>
+            <button type="button" id="heroFormToggle" aria-expanded="false" aria-controls="heroFormPanel" class="bg-white text-bordeaux px-7 py-3.5 text-[12px] font-bold tracking-wide hover:bg-white/90 transition">
+              REQUEST YOUR CONSULTATION
+            </button>
             <a href="#metrics" class="text-[12px] font-semibold tracking-wide text-white/80 hover:text-white transition underline underline-offset-4">
               See the numbers
             </a>
@@ -90,14 +111,65 @@
 
         <!-- framed product image -->
         <div class="lg:col-span-5">
-          <figure class="relative mx-auto max-w-[340px] lg:max-w-none">
+          <figure class="relative mx-auto max-w-[360px] lg:max-w-none">
             <div class="rounded-2xl border border-white/15 bg-white/5 p-3 shadow-2xl backdrop-blur-sm">
-              <img src="assets/T-FACE2.png" alt="The T-Face device" class="w-full rounded-xl object-cover" />
+              <img src="assets/tface-hero.jpg" alt="T-Face treatment in a premium clinic" class="w-full rounded-xl object-cover aspect-[4/5]" />
             </div>
-            <figcaption class="mt-4 text-center text-[11px] tracking-[0.25em] font-semibold text-white/55">
-              THE T-FACE PLATFORM
-            </figcaption>
           </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SOCIAL PROOF (REALSELF STRIP) ===================== -->
+  <section class="bg-white border-y border-black/10">
+    <div class="max-w-[1180px] mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-2 text-center">
+      <p class="font-serif text-[15px] md:text-[17px] text-darkmaroon">Baldan is one of the most requested aesthetic technologies in the United States.</p>
+      <span class="hidden sm:block h-6 w-px bg-black/15"></span>
+      <div class="flex items-center gap-2 text-[13px] text-darkmaroon/60">
+        <span>according to</span>
+        <img src="assets/realself-logo.png" alt="RealSelf" class="h-5 w-auto" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'font-bold text-darkmaroon text-[18px] tracking-tight',textContent:'RealSelf'}))" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HERO FORM (ACCORDION, CLOSED BY DEFAULT) ===================== -->
+  <section class="bg-graybg">
+    <div class="max-w-[600px] mx-auto px-6">
+      <div id="heroFormPanel" class="lead-accordion">
+        <div class="py-14">
+          <h2 class="font-serif font-bold text-[26px] text-darkmaroon text-center">Request your consultation</h2>
+          <p class="text-center text-[13px] text-darkmaroon/70 mt-3 mb-9">Tell us about your clinic. We'll show you how T-Face fits your room, your team and your margins.</p>
+          <form class="lead-form space-y-3.5">
+        <input type="hidden" name="product" value="T-Face USA" />
+        <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;height:0;width:0;overflow:hidden;"><input type="text" name="hp_company" tabindex="-1" autocomplete="off" /></div>
+        <div class="grid grid-cols-2 gap-3.5">
+          <input type="text" name="firstName" required placeholder="First Name *" autocomplete="given-name" class="bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
+          <input type="text" name="lastName" required placeholder="Last Name *" autocomplete="family-name" class="bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
+        </div>
+        <input type="email" name="email" required placeholder="Business Email *" autocomplete="email" class="w-full bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
+        <input type="tel" name="phone" required placeholder="Phone Number *" autocomplete="tel" class="w-full bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
+        <input type="text" name="businessName" required placeholder="Business Name *" autocomplete="organization" class="w-full bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
+        <input type="text" name="businessState" required placeholder="Business State *" autocomplete="address-level1" class="w-full bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
+
+        <input type="url" name="website" required placeholder="Website Url or Social Media Profile *" autocomplete="url" class="w-full bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
+
+        <div class="pt-2 flex items-start gap-2.5">
+          <input type="checkbox" name="termsAccepted" value="Yes" required class="mt-1 accent-bordeaux shrink-0" />
+          <div>
+            <span class="text-[12px] font-bold text-darkmaroon">I have read and accept the <a href="https://www.baldangroup.com/en/privacy-policy/" target="_blank" rel="noopener" class="underline underline-offset-2 text-darkmaroon hover:text-bordeaux transition">Privacy Policy</a>. *</span>
+            <p class="text-[10px] text-darkmaroon/60 mt-1.5 leading-relaxed">
+              The data subject confirms that he/she has read the Information Notice on the Processing of Personal Data
+              entitled "Privacy Notice" pursuant to Articles 13 and 14 of the GDPR, and expresses his/her explicit, free
+              and informed consent to the processing of such data.
+            </p>
+          </div>
+        </div>
+
+        <button type="submit" class="mt-4 w-full bg-bordeaux text-white px-6 py-4 text-[12px] font-bold tracking-wide hover:opacity-90 transition">
+          SUBMIT YOUR DETAILS
+        </button>
+      </form>
         </div>
       </div>
     </div>
@@ -106,6 +178,11 @@
   <!-- ===================== THE OFFER (RISK REVERSAL, BELOW HERO) ===================== -->
   <section class="bg-darkmaroon text-white">
     <div class="max-w-[1180px] mx-auto px-6 py-14">
+      <div class="mb-9 flex items-center gap-4 text-white">
+        <span class="text-[11px] tracking-[0.28em] font-bold text-white/60 whitespace-nowrap">LIMITED-TIME PARTNER OFFER</span>
+        <span class="h-px flex-1 bg-white/15"></span>
+        <span class="text-[12px] font-semibold whitespace-nowrap">Applications close July 17, 2026</span>
+      </div>
       <div class="max-w-[760px] mb-10">
         <p class="font-serif font-bold text-[22px] md:text-[26px] leading-snug">
           A European leading company — 45 years of experience, 9,000+ clinics worldwide and 900 across America.
@@ -169,18 +246,6 @@
             That's what turns a one-time appointment into a weekly ritual.
           </p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== IT'S CALLED T-FACE + VIDEO ===================== -->
-  <section class="bg-cream">
-    <div class="max-w-[1180px] mx-auto px-6 pb-8">
-      <h3 class="font-serif font-bold text-[38px] md:text-[46px] text-bordeaux text-center">It's called T-Face.</h3>
-      <div class="mt-8 max-w-[920px] mx-auto">
-        <video controls preload="metadata" poster="assets/T-FACE2.png"
-               class="w-full rounded-md bg-black aspect-video shadow-2xl"
-               src="assets/T-Face%20-%20Descrittivo%20-%20INGLESE.mp4"></video>
       </div>
     </div>
   </section>
@@ -380,58 +445,19 @@
         Tell us about your clinic. We'll show you how T-Face fits your room, your team and your margins.
       </p>
 
-      <form id="leadForm" class="space-y-3.5">
+      <form class="lead-form space-y-3.5">
         <input type="hidden" name="product" value="T-Face USA" />
+        <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;height:0;width:0;overflow:hidden;"><input type="text" name="hp_company" tabindex="-1" autocomplete="off" /></div>
         <div class="grid grid-cols-2 gap-3.5">
-          <input type="text" name="firstName" required placeholder="First Name *" class="bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
-          <input type="text" name="lastName" required placeholder="Last Name *" class="bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
+          <input type="text" name="firstName" required placeholder="First Name *" autocomplete="given-name" class="bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
+          <input type="text" name="lastName" required placeholder="Last Name *" autocomplete="family-name" class="bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
         </div>
-        <input type="email" name="email" required placeholder="Business Email *" class="w-full bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
-        <input type="tel" name="phone" required placeholder="Phone Number *" class="w-full bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
-        <input type="text" name="businessName" required placeholder="Business Name *" class="w-full bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
-        <div class="grid grid-cols-2 gap-3.5">
-          <input type="text" name="businessState" required placeholder="Business State *" class="bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
-          <input type="text" name="businessAddress" required placeholder="Business Address *" class="bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
-        </div>
+        <input type="email" name="email" required placeholder="Business Email *" autocomplete="email" class="w-full bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
+        <input type="tel" name="phone" required placeholder="Phone Number *" autocomplete="tel" class="w-full bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
+        <input type="text" name="businessName" required placeholder="Business Name *" autocomplete="organization" class="w-full bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
+        <input type="text" name="businessState" required placeholder="Business State *" autocomplete="address-level1" class="w-full bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
 
-        <div class="pt-2">
-          <label class="block text-[12px] font-bold text-darkmaroon mb-1.5">Which of these best describes your company? *</label>
-          <select name="companyType" required class="w-full bg-white text-[13px] text-gray-600 px-3.5 py-3 outline-none rounded-sm border border-black/10 focus:border-bordeaux">
-            <option value="" disabled selected>Select one…</option>
-            <option>Individual (Personal use / Seeking)</option>
-            <option>Chiropractor</option>
-            <option>Dermatology Clinic</option>
-            <option>Gym</option>
-            <option>Medical Spa</option>
-            <option>Plastic Surgery Clinic</option>
-            <option>Weight Loss/Bariatric Clinic</option>
-            <option>Wellness &amp; Rejuvenation</option>
-            <option>Salon/Spa</option>
-            <option>None of the above</option>
-          </select>
-        </div>
-
-        <div class="pt-2">
-          <label class="block text-[12px] font-bold text-darkmaroon mb-2">Has your business been open for more than a year? *</label>
-          <div class="flex gap-6">
-            <label class="flex items-center gap-2 text-[13px] text-darkmaroon/80"><input type="radio" name="open" value="Yes" required class="accent-bordeaux"> Yes</label>
-            <label class="flex items-center gap-2 text-[13px] text-darkmaroon/80"><input type="radio" name="open" value="No" class="accent-bordeaux"> No</label>
-          </div>
-        </div>
-
-        <div class="pt-2">
-          <label class="block text-[12px] font-bold text-darkmaroon mb-1.5">To consider your eligibility for the zero-cost program, could you tell us your Monthly Revenue Range (USD)</label>
-          <select name="monthlyRevenue" class="w-full bg-white text-[13px] text-gray-600 px-3.5 py-3 outline-none rounded-sm border border-black/10 focus:border-bordeaux">
-            <option value="" disabled selected>Select your clinic's average monthly revenue</option>
-            <option>$0–$10K</option>
-            <option>$10K–$50K</option>
-            <option>$50K–$100K</option>
-            <option>$100K–$250K</option>
-            <option>Over $250K</option>
-          </select>
-        </div>
-
-        <input type="url" name="website" required placeholder="Website Url or Social Media Profile *" class="w-full bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
+        <input type="url" name="website" required placeholder="Website Url or Social Media Profile *" autocomplete="url" class="w-full bg-white text-[13px] text-gray-700 px-3.5 py-3 outline-none rounded-sm border border-black/10 placeholder:text-gray-400 focus:border-bordeaux" />
 
         <div class="pt-2 flex items-start gap-2.5">
           <input type="checkbox" name="termsAccepted" value="Yes" required class="mt-1 accent-bordeaux shrink-0" />
@@ -442,14 +468,6 @@
               entitled "Privacy Notice" pursuant to Articles 13 and 14 of the GDPR, and expresses his/her explicit, free
               and informed consent to the processing of such data.
             </p>
-          </div>
-        </div>
-
-        <div class="pt-2">
-          <label class="block text-[12px] font-bold text-darkmaroon mb-1.5">Security check *</label>
-          <div class="flex items-center gap-2.5">
-            <span class="text-[13px] text-darkmaroon"><span id="captchaA">0</span> + <span id="captchaB">0</span> =</span>
-            <input type="text" id="captchaAnswer" inputmode="numeric" required class="w-20 bg-white text-[13px] px-3 py-2 outline-none rounded-sm border border-black/10 focus:border-bordeaux" />
           </div>
         </div>
 
@@ -467,88 +485,80 @@
     </div>
   </footer>
 
-  <!-- ===================== FORM → GOOGLE SHEETS ===================== -->
+  <!-- ===================== FORM → ZAPIER ===================== -->
   <script>
-    // Webhook Zapier (Catch Hook) — gestisce la mail all'utente e l'alert
     const FORM_ENDPOINT = "https://hooks.zapier.com/hooks/catch/10983876/42c4zt1/";
 
+    // ---- Fisarmonica del form nella hero ----
     (function () {
-      const form = document.getElementById('leadForm');
-      const submitBtn = form.querySelector('button[type="submit"]');
+      const toggle = document.getElementById("heroFormToggle");
+      const panel = document.getElementById("heroFormPanel");
+      if (toggle && panel) {
+        toggle.addEventListener("click", function () {
+          const isOpen = panel.classList.toggle("open");
+          toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+          if (isOpen) { setTimeout(function () { panel.scrollIntoView({ behavior: "smooth", block: "start" }); }, 60); }
+        });
+      }
+    })();
 
-      // ---- Messaggi di validazione del browser forzati in inglese ----
+    // ---- Gestione di TUTTI i form (fisarmonica in alto + form in fondo) ----
+    document.querySelectorAll(".lead-form").forEach(function (form) {
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const honeypot = form.querySelector('[name="hp_company"]');
+
       function englishMessage(el) {
         const v = el.validity;
         if (v.valueMissing) {
-          if (el.type === 'checkbox') return 'Please tick this box to continue.';
-          if (el.type === 'radio') return 'Please select one of these options.';
-          if (el.tagName === 'SELECT') return 'Please select an option from the list.';
-          return 'Please fill out this field.';
+          if (el.type === "checkbox") return "Please tick this box to continue.";
+          if (el.type === "radio") return "Please select one of these options.";
+          if (el.tagName === "SELECT") return "Please select an option from the list.";
+          return "Please fill out this field.";
         }
         if (v.typeMismatch) {
-          if (el.type === 'email') return 'Please enter a valid email address.';
-          if (el.type === 'url') return 'Please enter a valid URL (including https://).';
+          if (el.type === "email") return "Please enter a valid email address.";
+          if (el.type === "url") return "Please enter a valid URL (including https://).";
         }
-        return '';
+        return "";
       }
       Array.prototype.forEach.call(form.elements, function (el) {
         if (!el.name && !el.required) return;
-        el.addEventListener('invalid', function () { el.setCustomValidity(englishMessage(el)); });
-        el.addEventListener('input', function () { el.setCustomValidity(''); });
-        el.addEventListener('change', function () { el.setCustomValidity(''); });
+        el.addEventListener("invalid", function () { el.setCustomValidity(englishMessage(el)); });
+        el.addEventListener("input", function () { el.setCustomValidity(""); });
+        el.addEventListener("change", function () { el.setCustomValidity(""); });
       });
 
-      // ---- Security check dinamico (due numeri casuali a ogni apertura) ----
-      let captchaSum = 0;
-      function newCaptcha() {
-        const a = Math.floor(Math.random() * 9) + 1;
-        const b = Math.floor(Math.random() * 9) + 1;
-        document.getElementById('captchaA').textContent = a;
-        document.getElementById('captchaB').textContent = b;
-        captchaSum = a + b;
-      }
-      newCaptcha();
-
-      form.addEventListener('submit', function (e) {
+      form.addEventListener("submit", function (e) {
         e.preventDefault();
-
-        // Controllo del security check (i campi obbligatori li blocca già il browser)
-        if (parseInt(document.getElementById('captchaAnswer').value, 10) !== captchaSum) {
-          alert('The security check answer is not correct. Please try again.');
-          newCaptcha();
-          document.getElementById('captchaAnswer').value = '';
-          return;
-        }
-
+        if (honeypot && honeypot.value) { return; }
         const original = submitBtn.textContent;
         submitBtn.disabled = true;
-        submitBtn.textContent = 'SENDING…';
+        submitBtn.textContent = "SENDING…";
 
         const payload = new URLSearchParams(new FormData(form));
+        payload.delete("hp_company");
         const now = new Date();
-        const pad = function (n) { return String(n).padStart(2, '0'); };
-        payload.append('submittedAt',
-          now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate()) +
-          ' ' + pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds()));
+        const pad = function (n) { return String(n).padStart(2, "0"); };
+        payload.append("submittedAt",
+          now.getFullYear() + "-" + pad(now.getMonth() + 1) + "-" + pad(now.getDate()) +
+          " " + pad(now.getHours()) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds()));
 
-        fetch(FORM_ENDPOINT, { method: 'POST', body: payload })
+        fetch(FORM_ENDPOINT, { method: "POST", body: payload })
           .then(function () {
-            // Segnale di conversione per GA4 / Meta (via GTM, quando attivo)
             window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({ event: 'lead_submit', form_name: 'consultation' });
-            if (typeof gtag === 'function') { gtag('event', 'generate_lead', { form_name: 'consultation' }); }
-
+            window.dataLayer.push({ event: "lead_submit", form_name: "consultation" });
+            if (typeof gtag === "function") { gtag("event", "generate_lead", { form_name: "consultation" }); }
+            if (typeof fbq === "function") { fbq("track", "Lead"); }
             form.reset();
-            newCaptcha();
-            submitBtn.textContent = 'THANK YOU — WE WILL BE IN TOUCH';
+            submitBtn.textContent = "THANK YOU — WE WILL BE IN TOUCH";
           })
           .catch(function () {
-            alert('Something went wrong. Please try again.');
+            alert("Something went wrong. Please try again.");
             submitBtn.disabled = false;
             submitBtn.textContent = original;
           });
       });
-    })();
+    });
   </script>
 
 </body>
